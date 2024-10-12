@@ -17,17 +17,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 1), () async {
+    Timer(const Duration(seconds: 0), () async {
       // check login status
       final isLoggedIn =
           await ref.read(loginControllerProvider.notifier).checkLoginStatus();
-
       if (mounted) {
-        if (isLoggedIn) {
-          context.router.replace(const IndexRoute());
-        } else {
-          context.router.replace(const LoginRoute());
-        }
+        var route = isLoggedIn ? const IndexRoute() : const LoginRoute();
+        context.router.replace(route);
       }
     });
   }

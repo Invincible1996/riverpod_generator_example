@@ -6,7 +6,7 @@ import 'state/login_state.dart';
 import '../repository/auth/auth_repository.dart';
 part 'login_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class LoginController extends _$LoginController {
   late final AuthRepository _authRepository;
 
