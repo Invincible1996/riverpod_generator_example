@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'category_screen.dart';
 import 'home_screen.dart';
 import 'profile_screen.dart';
 
@@ -17,6 +18,7 @@ class _IndexScreenState extends ConsumerState<IndexScreen> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
     const HomeScreen(),
+    const CategoryScreen(),
     const ProfileScreen(),
   ];
 
@@ -35,6 +37,10 @@ class _IndexScreenState extends ConsumerState<IndexScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list_alt),
+            label: 'Product List',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

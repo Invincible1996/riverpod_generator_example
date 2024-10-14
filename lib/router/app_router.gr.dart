@@ -67,6 +67,98 @@ class LoginRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ProductDetailScreen]
+class ProductDetailRoute extends PageRouteInfo<ProductDetailRouteArgs> {
+  ProductDetailRoute({
+    Key? key,
+    required Product product,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ProductDetailRoute.name,
+          args: ProductDetailRouteArgs(
+            key: key,
+            product: product,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ProductDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ProductDetailRouteArgs>();
+      return ProductDetailScreen(
+        key: args.key,
+        product: args.product,
+      );
+    },
+  );
+}
+
+class ProductDetailRouteArgs {
+  const ProductDetailRouteArgs({
+    this.key,
+    required this.product,
+  });
+
+  final Key? key;
+
+  final Product product;
+
+  @override
+  String toString() {
+    return 'ProductDetailRouteArgs{key: $key, product: $product}';
+  }
+}
+
+/// generated route for
+/// [ProductListScreen]
+class ProductListRoute extends PageRouteInfo<ProductListRouteArgs> {
+  ProductListRoute({
+    Key? key,
+    required CategoryModel category,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ProductListRoute.name,
+          args: ProductListRouteArgs(
+            key: key,
+            category: category,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ProductListRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ProductListRouteArgs>();
+      return ProductListScreen(
+        key: args.key,
+        category: args.category,
+      );
+    },
+  );
+}
+
+class ProductListRouteArgs {
+  const ProductListRouteArgs({
+    this.key,
+    required this.category,
+  });
+
+  final Key? key;
+
+  final CategoryModel category;
+
+  @override
+  String toString() {
+    return 'ProductListRouteArgs{key: $key, category: $category}';
+  }
+}
+
+/// generated route for
 /// [ProfileScreen]
 class ProfileRoute extends PageRouteInfo<void> {
   const ProfileRoute({List<PageRouteInfo>? children})

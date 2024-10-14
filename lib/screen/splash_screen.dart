@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../controller/login_controller.dart';
 import 'package:auto_route/auto_route.dart';
+import '../controller/user_controller.dart';
 import '../router/app_router.dart';
 import 'dart:async';
 
@@ -21,6 +22,10 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       // check login status
       final isLoggedIn =
           await ref.read(loginControllerProvider.notifier).checkLoginStatus();
+      // if login, get current user info
+      if (isLoggedIn) {
+        await ref.read(userControllerProvider.notifier).getUserInfo();
+      }
       if (mounted) {
         var route = isLoggedIn ? const IndexRoute() : const LoginRoute();
         context.router.replace(route);

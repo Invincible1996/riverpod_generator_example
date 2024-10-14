@@ -1,11 +1,12 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import '../../repository/auth/auth_repository.dart';
-import '../../service/network_service.dart';
+import 'network_service_provider.dart';
 
 part 'auth_repository_provider.g.dart';
 
 @riverpod
 AuthRepository authRepository(AuthRepositoryRef ref) {
-  final networkService = NetworkService();
+  final networkService = ref.watch(networkServiceProvider);
   return AuthRepository(networkService);
 }

@@ -1,18 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/clearable_input.dart';
+import '../controller/user_controller.dart';
 
 @RoutePage()
-class EditProfileScreen extends StatefulWidget {
+class EditProfileScreen extends ConsumerStatefulWidget {
   const EditProfileScreen({super.key});
 
   @override
-  State<EditProfileScreen> createState() => _EditProfileScreenState();
+  ConsumerState<EditProfileScreen> createState() => _EditProfileScreenState();
 }
 
-class _EditProfileScreenState extends State<EditProfileScreen> {
-  final TextEditingController _usernameController = TextEditingController();
+class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
+  late TextEditingController _usernameController;
   final TextEditingController _bioController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _usernameController = TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final userAsyncValue = ref.read(userControllerProvider);
+      userAsyncValue.whenData((user) {
+        if (user != null) {
+          _usernameController.text = user.username;
+        }
+      });
+    });
+  }
 
   @override
   void dispose() {

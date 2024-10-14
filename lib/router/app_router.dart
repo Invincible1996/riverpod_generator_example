@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 
+import '../model/product/category_model.dart';
+import '../model/product/product_model.dart';
 import '../screen/login_screen.dart';
 import '../screen/index_screen.dart';
 // splash screen
@@ -7,6 +10,8 @@ import '../screen/splash_screen.dart';
 import '../screen/setting_screen.dart';
 import '../screen/profile_screen.dart';
 import '../screen/edit_profile_screen.dart';
+import '../screen/product_list_screen.dart';
+import '../screen/product_detail_screen.dart';
 
 part 'app_router.gr.dart';
 
@@ -20,6 +25,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: SettingsRoute.page),
         AutoRoute(page: ProfileRoute.page),
         AutoRoute(page: EditProfileRoute.page),
-        // Add other routes here
+        AutoRoute(page: ProductListRoute.page),
+        AutoRoute(page: ProductDetailRoute.page),
       ];
 }

@@ -15,13 +15,39 @@ class HomeScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Text('Welcome to the Home Screen, $username!'),
-            Text('Token: $token'),
-          ],
-        ),
+      body: ListView(
+        padding: const EdgeInsets.all(16.0),
+        children: [
+          ListTile(
+            title: Text('Welcome, $username!'),
+            subtitle: const Text('This is your home screen'),
+          ),
+          const Divider(),
+          ListTile(
+            title: const Text('User Information'),
+            subtitle: Text('Username: $username'),
+          ),
+          ListTile(
+            title: const Text('Authentication'),
+            subtitle: Text('Token: $token'),
+          ),
+          const Divider(),
+          // Add more ListTiles here for additional content
+          ListTile(
+            title: const Text('Settings'),
+            leading: const Icon(Icons.settings),
+            onTap: () {
+              // Navigate to settings screen
+            },
+          ),
+          ListTile(
+            title: const Text('Profile'),
+            leading: const Icon(Icons.person),
+            onTap: () {
+              // Navigate to profile screen
+            },
+          ),
+        ],
       ),
     );
   }

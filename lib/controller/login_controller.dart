@@ -2,11 +2,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../model/auth/auth_req.dart';
 import '../utils/token_storage.dart';
 import 'provider/auth_repository_provider.dart';
+import 'provider/network_service_provider.dart';
 import 'state/login_state.dart';
 import '../repository/auth/auth_repository.dart';
 part 'login_controller.g.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 class LoginController extends _$LoginController {
   late final AuthRepository _authRepository;
 
@@ -29,6 +30,7 @@ class LoginController extends _$LoginController {
       final token = response.accessToken;
       final username = response.username;
       await TokenStorage.saveToken(token);
+      ref.read(networkServiceProvider).setHeader(token);
       state = state.copyWith(
         status: LoginStatus.success,
         credentials: UserCredentials(username: username, token: token),
@@ -56,7 +58,6 @@ class LoginController extends _$LoginController {
           token: token,
         ),
       );
-      print('checkLoginStatus: true ${state.credentials.token}');
       return true;
     }
     return false;
