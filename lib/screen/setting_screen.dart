@@ -15,27 +15,35 @@ class SettingsScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Settings'),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView(
-              children: const [
-                // Add other settings items here
-              ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                children: const [
+                  // Add other settings items here
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () async {
-              await ref.read(loginControllerProvider.notifier).logout();
-              if (context.mounted) {
-                context.router.replaceAll([const LoginRoute()]);
-              }
-            },
-            child: const Text('Logout'),
-          ),
-          const SizedBox(height: 20),
-        ],
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                await ref.read(loginControllerProvider.notifier).logout();
+                if (context.mounted) {
+                  context.router.replaceAll([const LoginRoute()]);
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(
+                  MediaQuery.of(context).size.width * .85,
+                  50,
+                ),
+              ),
+              child: const Text('Logout'),
+            ),
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }

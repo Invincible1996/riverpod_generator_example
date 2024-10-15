@@ -34,7 +34,6 @@ class MyApp extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.orange,
             foregroundColor: Colors.white,
-            minimumSize: const Size(300, 48),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(6),
             ),

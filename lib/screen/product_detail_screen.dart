@@ -1,102 +1,176 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_generator_example/model/product/product_model.dart';
+import 'package:riverpod_generator_example/widgets/product_banner.dart';
 
-import '../model/product/product_model.dart';
-
-@RoutePage()
-class ProductDetailScreen extends ConsumerWidget {
+class ProductDetailScreen extends StatefulWidget {
   final Product product;
+
   const ProductDetailScreen({super.key, required this.product});
 
   @override
+  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
+}
+
+class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  late ScrollController _scrollController;
+  double _scrollOffset = 0.0;
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController()
+      ..addListener(() {
+        setState(() {
+          _scrollOffset = _scrollController.offset;
+        });
+      });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    const double colorChangeThreshold = 200.0;
+    final double opacity =
+        (_scrollOffset / colorChangeThreshold).clamp(0.0, 1.0);
+    final Color appBarColor =
+        Color.lerp(Colors.transparent, Colors.amber, opacity)!;
+    final Color textColor = Color.lerp(Colors.black, Colors.white, opacity)!;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(product.title ?? 'Product Detail'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 300,
-              child: PageView.builder(
-                itemCount: product.images?.length ?? 0,
-                itemBuilder: (context, index) {
-                  return CachedNetworkImage(
-                    imageUrl: product.images?[index] ?? '',
-                    width: double.infinity,
-                    height: 300,
-                    fit: BoxFit.contain,
-                    placeholder: (context, url) =>
-                        const Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    product.title ?? '',
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    '\$${product.price}',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: Theme.of(context).primaryColor,
-                        ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Description:',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  Text(product.description ?? ''),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Rating: ${product.rating}'),
-                      Text('Stock: ${product.stock}'),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Text('Discount: ${product.discountPercentage}%'),
-                  const SizedBox(height: 16),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
-            Text('Category: ${product.category}'),
-            Text('Brand: ${product.brand}'),
-          ],
+        backgroundColor: appBarColor,
+        elevation: opacity * 4, // Add elevation as we scroll
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: textColor),
+          onPressed: () => Navigator.of(context).pop(),
         ),
+        title: Text(
+          'Detail Product',
+          style: TextStyle(color: textColor),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.share, color: textColor),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: CustomScrollView(
+        controller: _scrollController,
+        slivers: [
+          SliverToBoxAdapter(
+            child: ProductBanner(product: widget.product),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          widget.product.title ?? '',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        // add favorite icon
+                        const Spacer(),
+                        IconButton(
+                          icon: const Icon(Icons.favorite_border),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Text(
+                          '\$${widget.product.price ?? ''}',
+                          style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red),
+                        ),
+                        const SizedBox(width: 8),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            '${widget.product.discountPercentage}% off',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      '\$${(1 - widget.product.discountPercentage! / 100) * widget.product.price!}',
+                      style: const TextStyle(
+                        decoration: TextDecoration.lineThrough,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Description Product',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      '${widget.product.description}',
+                    ),
+                    // ... (rest of the content remains the same)
+                    Column(
+                      children:
+                          widget.product.images!.asMap().entries.map((entry) {
+                        return CachedNetworkImage(imageUrl: entry.value);
+                      }).toList(),
+                    )
+                  ],
+                ),
+              ),
+            ]),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Add to cart button
-            ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Added to cart')),
-                );
-              },
-              child: const Text('Add to Cart'),
-            ),
-          ],
+        color: Colors.white,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Row(
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Add to Cart'),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Buy Now'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 }

@@ -21,6 +21,9 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   cached_network_image: ^3.4.1
   easy_refresh: ^3.4.0
+  flutter_rating_bar: ^4.0.1
+  carousel_slider: ^5.0.0
+  
 
 dev_dependencies:
   flutter_test:

@@ -197,6 +197,25 @@ class SettingsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ShopcartScreen]
+class ShopcartRoute extends PageRouteInfo<void> {
+  const ShopcartRoute({List<PageRouteInfo>? children})
+      : super(
+          ShopcartRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ShopcartRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ShopcartScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})
