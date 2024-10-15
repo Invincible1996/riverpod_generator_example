@@ -60,4 +60,31 @@ class NetworkService {
   }
 
   // Add other methods like put, delete, etc. as needed
+  // put
+  Future<dynamic> put(String path, {dynamic data}) async {
+    try {
+      final response = await _dio.put(path, data: data);
+      return response.data;
+    } on DioException catch (_) {
+      // Handle Dio errors
+      rethrow;
+    } catch (e) {
+      // Handle other errors
+      rethrow;
+    }
+  }
+
+  // delete
+  Future<dynamic> delete(String path, {dynamic data}) async {
+    try {
+      final response = await _dio.delete(path, data: data);
+      return response.data;
+    } on DioException catch (_) {
+      // Handle Dio errors
+      rethrow;
+    } catch (e) {
+      // Handle other errors
+      rethrow;
+    }
+  }
 }

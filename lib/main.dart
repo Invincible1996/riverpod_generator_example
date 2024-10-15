@@ -39,6 +39,10 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        checkboxTheme: CheckboxThemeData(
+          checkColor: WidgetStateProperty.all(Colors.white),
+          // fillColor: WidgetStateProperty.all(Colors.orange),
+        ),
         inputDecorationTheme: const InputDecorationTheme(
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.orange),

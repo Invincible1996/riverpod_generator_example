@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_generator_example/model/product/product_model.dart';
 import 'package:riverpod_generator_example/widgets/product_banner.dart';
 
+@RoutePage()
 class ProductDetailScreen extends StatefulWidget {
   final Product product;
 

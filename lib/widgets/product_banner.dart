@@ -45,7 +45,15 @@ class _ProductBannerState extends State<ProductBanner> {
                       width: MediaQuery.of(context).size.width,
                       margin: const EdgeInsets.symmetric(horizontal: 5.0),
                       // decoration: const BoxDecoration(color: Colors.amber),
-                      child: CachedNetworkImage(imageUrl: e),
+                      child: CachedNetworkImage(
+                        imageUrl: e,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
                     );
                   },
                 );

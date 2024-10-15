@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'category_screen.dart';
 import 'home_screen.dart';
 import 'profile_screen.dart';
-import 'shopcart_screen.dart';
+import 'shopcart/screen/shopcart_screen.dart';
 
 @RoutePage()
 class IndexScreen extends ConsumerStatefulWidget {
