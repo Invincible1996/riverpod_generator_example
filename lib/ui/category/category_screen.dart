@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../controller/product_category_controller.dart';
-import '../router/app_router.dart';
+import '../../controller/product_category_controller.dart';
+import '../../router/app_router.dart';
 
 class CategoryScreen extends ConsumerWidget {
   const CategoryScreen({super.key});

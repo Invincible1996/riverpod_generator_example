@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../router/app_router.dart';
-import '../controller/login_controller.dart';
+import '../../controller/login_controller.dart';
+import '../../router/app_router.dart';
 
 @RoutePage()
 class SettingsScreen extends ConsumerWidget {

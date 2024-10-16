@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../controller/login_controller.dart';
-import '../controller/state/login_state.dart';
-import '../router/app_router.dart';
+import '../../controller/login_controller.dart';
+import '../../controller/state/login_state.dart';
+import '../../router/app_router.dart';
 
 @RoutePage()
 class LoginScreen extends ConsumerStatefulWidget {

@@ -4,9 +4,9 @@ import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../controller/product_list_controller.dart';
-import '../model/product/category_model.dart';
-import '../router/app_router.dart';
+import '../../controller/product_list_controller.dart';
+import '../../model/product/category_model.dart';
+import '../../router/app_router.dart';
 
 @RoutePage()
 class ProductListScreen extends ConsumerWidget {

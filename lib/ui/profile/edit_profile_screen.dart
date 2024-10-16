@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../widgets/clearable_input.dart';
-import '../controller/user_controller.dart';
+
+import '../../controller/user_controller.dart';
+import '../../widgets/clearable_input.dart';
 
 @RoutePage()
 class EditProfileScreen extends ConsumerStatefulWidget {

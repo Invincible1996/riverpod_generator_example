@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../controller/login_controller.dart';
+
+import '../../controller/login_controller.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});

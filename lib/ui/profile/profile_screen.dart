@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../controller/user_controller.dart';
-import '../router/app_router.dart';
+import '../../controller/user_controller.dart';
+import '../../router/app_router.dart';
 
 @RoutePage()
 class ProfileScreen extends ConsumerWidget {
