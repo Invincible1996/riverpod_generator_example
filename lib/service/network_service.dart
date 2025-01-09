@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:riverpod_generator_example/utils/curl_logger.dart';
 
 import 'interceptors/request_interceptor.dart';
 
@@ -13,15 +13,7 @@ class NetworkService {
     _dio.options.receiveTimeout = const Duration(seconds: 3);
     // add interceptor
     _dio.interceptors
-      ..add(
-        PrettyDioLogger(
-          requestHeader: true,
-          requestBody: true,
-          responseBody: true,
-          responseHeader: true,
-          error: true,
-        ),
-      )
+      ..add(CurlLoggerInterceptor())
       ..add(
         RequestInterceptor(),
       );

@@ -28,10 +28,36 @@ class SettingsScreen extends ConsumerWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
-                await ref.read(loginControllerProvider.notifier).logout();
-                if (context.mounted) {
-                  context.router.replaceAll([const LoginRoute()]);
-                }
+                /// show dialog to confirm logout
+                final result = await showDialog<bool>(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text('Logout'),
+                      content: const Text('Are you sure you want to logout?'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(false);
+                          },
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            Navigator.of(context).pop(true);
+                            await ref
+                                .read(loginControllerProvider.notifier)
+                                .logout();
+                            if (context.mounted) {
+                              context.router.replaceAll([const LoginRoute()]);
+                            }
+                          },
+                          child: const Text('Logout'),
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(

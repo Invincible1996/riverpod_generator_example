@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 import '../model/product/category_model.dart';
 import '../model/product/product_model.dart';
-import '../ui/login_screen.dart';
+import '../ui/auth/login_screen.dart';
 import '../ui/index_screen.dart';
+import '../ui/product/product_detail_screen.dart';
+import '../ui/product/product_list_screen.dart';
+import '../ui/profile/edit_profile_screen.dart';
+import '../ui/profile/profile_screen.dart';
+import '../ui/setting/setting_screen.dart';
 import '../ui/splash_screen.dart';
-import '../ui/setting_screen.dart';
-import '../ui/profile_screen.dart';
-import '../ui/edit_profile_screen.dart';
-import '../ui/product_list_screen.dart';
-import '../ui/product_detail_screen.dart';
 import '../ui/shopcart/screen/shopcart_screen.dart';
 
 part 'app_router.gr.dart';

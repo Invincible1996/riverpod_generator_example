@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_generator_example/styles/m_colors.dart';
 
-import 'category_screen.dart';
-import 'home_screen.dart';
-import 'profile_screen.dart';
+import 'category/category_screen.dart';
+import 'home/home_screen.dart';
+import 'profile/profile_screen.dart';
 import 'shopcart/screen/shopcart_screen.dart';
 
 @RoutePage()
@@ -61,7 +62,7 @@ class _IndexScreenState extends ConsumerState<IndexScreen> {
               _currentIndex = index;
             });
           },
-          indicatorColor: Colors.amber,
+          indicatorColor: MColors.primary,
           selectedIndex: _currentIndex,
           destinations: const <Widget>[
             NavigationDestination(

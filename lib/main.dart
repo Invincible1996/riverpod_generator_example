@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_generator_example/styles/m_colors.dart';
 import 'router/app_router.dart';
 
 void main() {
@@ -22,17 +23,17 @@ class MyApp extends StatelessWidget {
       routerConfig: _appRouter.config(),
       // Other app configurations
       theme: ThemeData(
-        primarySwatch: Colors.orange,
-        primaryColor: Colors.orange,
+        primarySwatch: MColors.primarySwatch,
+        primaryColor: MColors.primary,
         useMaterial3: true,
         splashColor: Colors.transparent,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.orange,
+          backgroundColor: MColors.primary,
           foregroundColor: Colors.white,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.orange,
+            backgroundColor: Colors.red,
             foregroundColor: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(6),
@@ -41,22 +42,23 @@ class MyApp extends StatelessWidget {
         ),
         checkboxTheme: CheckboxThemeData(
           checkColor: WidgetStateProperty.all(Colors.white),
-          // fillColor: WidgetStateProperty.all(Colors.orange),
+          // fillColor: WidgetStateProperty.all(Colors.red),
         ),
         inputDecorationTheme: const InputDecorationTheme(
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.orange),
+            borderSide: BorderSide(color: Colors.red),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.orange),
+            borderSide: BorderSide(color: Colors.red),
           ),
           labelStyle: TextStyle(
-            color: Colors.orange,
+            color: Colors.red,
           ),
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedItemColor: Colors.orange,
+          selectedItemColor: MColors.primary,
           unselectedItemColor: Colors.grey,
+          selectedIconTheme: IconThemeData(color: MColors.primary),
         ),
       ),
     );

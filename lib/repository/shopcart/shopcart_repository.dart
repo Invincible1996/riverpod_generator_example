@@ -8,6 +8,9 @@ class ShopcartRepository {
 
   ShopcartRepository(this._networkService);
 
+  /// Add product to shopcart
+  /// 'https://dummyjson.com/carts/add'
+  /// @param Product [product]
   Future<void> addProductToShopcart(Product product) async {
     // Add product to shopcart
     // 'https://dummyjson.com/carts/add'
@@ -20,6 +23,8 @@ class ShopcartRepository {
     }
   }
 
+  /// Remove product from shopcart
+  /// 'https://dummyjson.com/carts/${product.id}'
   Future<void> removeProductFromShopcart(Product product) async {
     try {
       final response = await _networkService.delete('/carts/${product.id}');
@@ -29,6 +34,9 @@ class ShopcartRepository {
     }
   }
 
+  ///  Get shopcart products
+  /// 'https://dummyjson.com/carts'
+  ///  @return List<ShopcartModel>
   Future<List<ShopcartModel>> getShopcartProducts() async {
     // Get shopcart products
     // 'https://dummyjson.com/carts'
